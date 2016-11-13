@@ -14,11 +14,11 @@ import antlrparser.SimpleAsmParser;
 public class ParseProgram {
 	
 	String input;
-	StringBuffer output;
+	String output;
 	
 	public ParseProgram(String input) {
 		this.input = input ;
-		output = new StringBuffer();
+		output = "";
 	}
 	
 	public String getInput() {
@@ -29,12 +29,12 @@ public class ParseProgram {
 		this.input = input;
 	}
 
-	public StringBuffer getOutput() {
+	public String getOutput() {
 		return output;
 	}
 
-	public void setOutput(StringBuffer output) {
-		this.output = output;
+	public void setOutput(String string) {
+		this.output = string;
 	}
 
 	public void parse() {
@@ -56,15 +56,12 @@ public class ParseProgram {
         
         ParseTreeWalker walker = new ParseTreeWalker();
         
-        Vector<String> memoryMap = new Vector<String>();
+        MemoryMap memoryMap = new MemoryMap();
         
         walker.walk(new TranslateASMSource(memoryMap), tree);
 
-        StringBuffer str = new StringBuffer();
-        for (int i = 0; i < memoryMap.size(); i++) {
-        	str.append(memoryMap.get(i));
-        }
-		setOutput(str);
+
+		setOutput(memoryMap.getString());
 		
 	}
 

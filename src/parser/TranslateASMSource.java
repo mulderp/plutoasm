@@ -18,9 +18,9 @@ import antlrparser.SimpleAsmParser.ValueContext;
 
 public class TranslateASMSource implements SimpleAsmListener {
 
-	Vector<String> memoryMap;
+	MemoryMap memoryMap;
 	
-	public TranslateASMSource(Vector<String> memoryMap) {
+	public TranslateASMSource(MemoryMap memoryMap) {
 		this.memoryMap = memoryMap;
 	}
 	
@@ -62,7 +62,7 @@ public class TranslateASMSource implements SimpleAsmListener {
 
 	@Override
 	public void enterStmt(StmtContext ctx) {
-		memoryMap.add("12");
+
 	}
 
 	@Override
@@ -73,8 +73,9 @@ public class TranslateASMSource implements SimpleAsmListener {
 
 	@Override
 	public void enterSegmentStmt(SegmentStmtContext ctx) {
-		// TODO Auto-generated method stub
-		
+		memoryMap.setActiveSegment(ctx.getText());
+
+		System.out.println();
 	}
 
 	@Override
@@ -91,8 +92,7 @@ public class TranslateASMSource implements SimpleAsmListener {
 
 	@Override
 	public void exitDataDecl(DataDeclContext ctx) {
-		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
@@ -103,26 +103,23 @@ public class TranslateASMSource implements SimpleAsmListener {
 
 	@Override
 	public void exitLabel(LabelContext ctx) {
-		// TODO Auto-generated method stub
-		
+	
 	}
 
 	@Override
 	public void enterNumberList(NumberListContext ctx) {
-		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void exitNumberList(NumberListContext ctx) {
-		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void enterValue(ValueContext ctx) {
-		// TODO Auto-generated method stub
-		
+		System.out.println(ctx.INT().getText());
+		memoryMap.add(ctx.INT().getText());
 	}
 
 	@Override
