@@ -7,7 +7,7 @@ In this first step, the Java Swing GUI combines a user interface with aa ANTLR p
 
 # Example program
 
-The first goal is to make this simple assembler program work:
+The first goal is to make this simple assembler program work that come as example on [CS61c](http://www-inst.eecs.berkeley.edu/~cs61c/fa10/labs/02a/):
      
              .data
      n:      .word 9
@@ -30,6 +30,7 @@ The first goal is to make this simple assembler program work:
      	li      $v0, 10		
      	syscall			
      
+For this, the first step is to have a data structure (MemoryMap) that manages different segments of a memory. See [segments discussions](https://www.cs.umd.edu/class/sum2003/cmsc311/Notes/Mips/dataseg.html).
 
 # Screenshot
 
