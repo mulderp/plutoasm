@@ -9,7 +9,10 @@ public class EditPanel extends JPanel {
 	
 	public EditPanel() {
 		srcEdit = new JTextArea(20, 30);
-		srcEdit.setText("abc");
+		String src = ".data\n"
+				+ "a: .word 1, 2, 3\n";
+		
+		srcEdit.setText(src);
 		add(srcEdit);
 		
 	}

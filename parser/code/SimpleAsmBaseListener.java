@@ -81,13 +81,13 @@ public class SimpleAsmBaseListener implements SimpleAsmListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterArrayInit(SimpleAsmParser.ArrayInitContext ctx) { }
+	@Override public void enterNumberList(SimpleAsmParser.NumberListContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitArrayInit(SimpleAsmParser.ArrayInitContext ctx) { }
+	@Override public void exitNumberList(SimpleAsmParser.NumberListContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

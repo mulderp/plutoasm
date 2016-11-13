@@ -63,15 +63,15 @@ public interface SimpleAsmListener extends ParseTreeListener {
 	 */
 	void exitLabel(SimpleAsmParser.LabelContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link SimpleAsmParser#arrayInit}.
+	 * Enter a parse tree produced by {@link SimpleAsmParser#numberList}.
 	 * @param ctx the parse tree
 	 */
-	void enterArrayInit(SimpleAsmParser.ArrayInitContext ctx);
+	void enterNumberList(SimpleAsmParser.NumberListContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link SimpleAsmParser#arrayInit}.
+	 * Exit a parse tree produced by {@link SimpleAsmParser#numberList}.
 	 * @param ctx the parse tree
 	 */
-	void exitArrayInit(SimpleAsmParser.ArrayInitContext ctx);
+	void exitNumberList(SimpleAsmParser.NumberListContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link SimpleAsmParser#value}.
 	 * @param ctx the parse tree

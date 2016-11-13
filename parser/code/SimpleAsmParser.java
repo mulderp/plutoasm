@@ -21,21 +21,19 @@ public class SimpleAsmParser extends Parser {
 	protected static final PredictionContextCache _sharedContextCache =
 		new PredictionContextCache();
 	public static final int
-		T__0=1, T__1=2, T__2=3, T__3=4, INT=5, ALPHA=6, TYPE=7, WS=8, TEXTS=9, 
-		DATAS=10;
+		T__0=1, T__1=2, INT=3, ALPHA=4, TYPE=5, WS=6, TEXTS=7, DATAS=8;
 	public static final int
 		RULE_init = 0, RULE_stmt = 1, RULE_segmentStmt = 2, RULE_dataDecl = 3, 
-		RULE_label = 4, RULE_arrayInit = 5, RULE_value = 6;
+		RULE_label = 4, RULE_numberList = 5, RULE_value = 6;
 	public static final String[] ruleNames = {
-		"init", "stmt", "segmentStmt", "dataDecl", "label", "arrayInit", "value"
+		"init", "stmt", "segmentStmt", "dataDecl", "label", "numberList", "value"
 	};
 
 	private static final String[] _LITERAL_NAMES = {
-		null, "':'", "'{'", "','", "'}'", null, null, "'.word'", null, "'.text'", 
-		"'.data'"
+		null, "':'", "','", null, null, "'.word'", null, "'.text'", "'.data'"
 	};
 	private static final String[] _SYMBOLIC_NAMES = {
-		null, null, null, null, null, "INT", "ALPHA", "TYPE", "WS", "TEXTS", "DATAS"
+		null, null, null, "INT", "ALPHA", "TYPE", "WS", "TEXTS", "DATAS"
 	};
 	public static final Vocabulary VOCABULARY = new VocabularyImpl(_LITERAL_NAMES, _SYMBOLIC_NAMES);
 
@@ -117,7 +115,7 @@ public class SimpleAsmParser extends Parser {
 			setState(17);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
-			while ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__1) | (1L << ALPHA) | (1L << TEXTS) | (1L << DATAS))) != 0)) {
+			while ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << INT) | (1L << ALPHA) | (1L << TEXTS) | (1L << DATAS))) != 0)) {
 				{
 				{
 				setState(14);
@@ -148,8 +146,8 @@ public class SimpleAsmParser extends Parser {
 		public DataDeclContext dataDecl() {
 			return getRuleContext(DataDeclContext.class,0);
 		}
-		public ArrayInitContext arrayInit() {
-			return getRuleContext(ArrayInitContext.class,0);
+		public NumberListContext numberList() {
+			return getRuleContext(NumberListContext.class,0);
 		}
 		public StmtContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -186,11 +184,11 @@ public class SimpleAsmParser extends Parser {
 				dataDecl();
 				}
 				break;
-			case T__1:
+			case INT:
 				enterOuterAlt(_localctx, 3);
 				{
 				setState(22);
-				arrayInit();
+				numberList();
 				}
 				break;
 			default:
@@ -257,8 +255,8 @@ public class SimpleAsmParser extends Parser {
 			return getRuleContext(LabelContext.class,0);
 		}
 		public TerminalNode TYPE() { return getToken(SimpleAsmParser.TYPE, 0); }
-		public ArrayInitContext arrayInit() {
-			return getRuleContext(ArrayInitContext.class,0);
+		public NumberListContext numberList() {
+			return getRuleContext(NumberListContext.class,0);
 		}
 		public DataDeclContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -285,7 +283,7 @@ public class SimpleAsmParser extends Parser {
 			setState(28);
 			match(TYPE);
 			setState(29);
-			arrayInit();
+			numberList();
 			}
 		}
 		catch (RecognitionException re) {
@@ -338,56 +336,52 @@ public class SimpleAsmParser extends Parser {
 		return _localctx;
 	}
 
-	public static class ArrayInitContext extends ParserRuleContext {
+	public static class NumberListContext extends ParserRuleContext {
 		public List<ValueContext> value() {
 			return getRuleContexts(ValueContext.class);
 		}
 		public ValueContext value(int i) {
 			return getRuleContext(ValueContext.class,i);
 		}
-		public ArrayInitContext(ParserRuleContext parent, int invokingState) {
+		public NumberListContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
-		@Override public int getRuleIndex() { return RULE_arrayInit; }
+		@Override public int getRuleIndex() { return RULE_numberList; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof SimpleAsmListener ) ((SimpleAsmListener)listener).enterArrayInit(this);
+			if ( listener instanceof SimpleAsmListener ) ((SimpleAsmListener)listener).enterNumberList(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof SimpleAsmListener ) ((SimpleAsmListener)listener).exitArrayInit(this);
+			if ( listener instanceof SimpleAsmListener ) ((SimpleAsmListener)listener).exitNumberList(this);
 		}
 	}
 
-	public final ArrayInitContext arrayInit() throws RecognitionException {
-		ArrayInitContext _localctx = new ArrayInitContext(_ctx, getState());
-		enterRule(_localctx, 10, RULE_arrayInit);
+	public final NumberListContext numberList() throws RecognitionException {
+		NumberListContext _localctx = new NumberListContext(_ctx, getState());
+		enterRule(_localctx, 10, RULE_numberList);
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
 			setState(34);
-			match(T__1);
-			setState(35);
 			value();
-			setState(40);
+			setState(39);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
-			while (_la==T__2) {
+			while (_la==T__1) {
 				{
 				{
+				setState(35);
+				match(T__1);
 				setState(36);
-				match(T__2);
-				setState(37);
 				value();
 				}
 				}
-				setState(42);
+				setState(41);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			}
-			setState(43);
-			match(T__3);
 			}
 		}
 		catch (RecognitionException re) {
@@ -402,9 +396,6 @@ public class SimpleAsmParser extends Parser {
 	}
 
 	public static class ValueContext extends ParserRuleContext {
-		public ArrayInitContext arrayInit() {
-			return getRuleContext(ArrayInitContext.class,0);
-		}
 		public TerminalNode INT() { return getToken(SimpleAsmParser.INT, 0); }
 		public ValueContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -424,24 +415,10 @@ public class SimpleAsmParser extends Parser {
 		ValueContext _localctx = new ValueContext(_ctx, getState());
 		enterRule(_localctx, 12, RULE_value);
 		try {
-			setState(47);
-			switch (_input.LA(1)) {
-			case T__1:
-				enterOuterAlt(_localctx, 1);
-				{
-				setState(45);
-				arrayInit();
-				}
-				break;
-			case INT:
-				enterOuterAlt(_localctx, 2);
-				{
-				setState(46);
-				match(INT);
-				}
-				break;
-			default:
-				throw new NoViableAltException(this);
+			enterOuterAlt(_localctx, 1);
+			{
+			setState(42);
+			match(INT);
 			}
 		}
 		catch (RecognitionException re) {
@@ -456,20 +433,18 @@ public class SimpleAsmParser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\3\u0430\ud6d1\u8206\uad2d\u4417\uaef1\u8d80\uaadd\3\f\64\4\2\t\2\4\3"+
-		"\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\3\2\7\2\22\n\2\f\2\16\2\25"+
+		"\3\u0430\ud6d1\u8206\uad2d\u4417\uaef1\u8d80\uaadd\3\n/\4\2\t\2\4\3\t"+
+		"\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\3\2\7\2\22\n\2\f\2\16\2\25"+
 		"\13\2\3\3\3\3\3\3\5\3\32\n\3\3\4\3\4\3\5\3\5\3\5\3\5\3\6\3\6\3\6\3\7\3"+
-		"\7\3\7\3\7\7\7)\n\7\f\7\16\7,\13\7\3\7\3\7\3\b\3\b\5\b\62\n\b\3\b\2\2"+
-		"\t\2\4\6\b\n\f\16\2\3\3\2\13\f\61\2\23\3\2\2\2\4\31\3\2\2\2\6\33\3\2\2"+
-		"\2\b\35\3\2\2\2\n!\3\2\2\2\f$\3\2\2\2\16\61\3\2\2\2\20\22\5\4\3\2\21\20"+
-		"\3\2\2\2\22\25\3\2\2\2\23\21\3\2\2\2\23\24\3\2\2\2\24\3\3\2\2\2\25\23"+
-		"\3\2\2\2\26\32\5\6\4\2\27\32\5\b\5\2\30\32\5\f\7\2\31\26\3\2\2\2\31\27"+
-		"\3\2\2\2\31\30\3\2\2\2\32\5\3\2\2\2\33\34\t\2\2\2\34\7\3\2\2\2\35\36\5"+
-		"\n\6\2\36\37\7\t\2\2\37 \5\f\7\2 \t\3\2\2\2!\"\7\b\2\2\"#\7\3\2\2#\13"+
-		"\3\2\2\2$%\7\4\2\2%*\5\16\b\2&\'\7\5\2\2\')\5\16\b\2(&\3\2\2\2),\3\2\2"+
-		"\2*(\3\2\2\2*+\3\2\2\2+-\3\2\2\2,*\3\2\2\2-.\7\6\2\2.\r\3\2\2\2/\62\5"+
-		"\f\7\2\60\62\7\7\2\2\61/\3\2\2\2\61\60\3\2\2\2\62\17\3\2\2\2\6\23\31*"+
-		"\61";
+		"\7\3\7\7\7(\n\7\f\7\16\7+\13\7\3\b\3\b\3\b\2\2\t\2\4\6\b\n\f\16\2\3\3"+
+		"\2\t\n+\2\23\3\2\2\2\4\31\3\2\2\2\6\33\3\2\2\2\b\35\3\2\2\2\n!\3\2\2\2"+
+		"\f$\3\2\2\2\16,\3\2\2\2\20\22\5\4\3\2\21\20\3\2\2\2\22\25\3\2\2\2\23\21"+
+		"\3\2\2\2\23\24\3\2\2\2\24\3\3\2\2\2\25\23\3\2\2\2\26\32\5\6\4\2\27\32"+
+		"\5\b\5\2\30\32\5\f\7\2\31\26\3\2\2\2\31\27\3\2\2\2\31\30\3\2\2\2\32\5"+
+		"\3\2\2\2\33\34\t\2\2\2\34\7\3\2\2\2\35\36\5\n\6\2\36\37\7\7\2\2\37 \5"+
+		"\f\7\2 \t\3\2\2\2!\"\7\6\2\2\"#\7\3\2\2#\13\3\2\2\2$)\5\16\b\2%&\7\4\2"+
+		"\2&(\5\16\b\2\'%\3\2\2\2(+\3\2\2\2)\'\3\2\2\2)*\3\2\2\2*\r\3\2\2\2+)\3"+
+		"\2\2\2,-\7\5\2\2-\17\3\2\2\2\5\23\31)";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {

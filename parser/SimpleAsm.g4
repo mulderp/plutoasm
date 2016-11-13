@@ -5,7 +5,7 @@ grammar SimpleAsm;
 
 
 @header {
-    // package antlrparser;
+    package antlrparser;
 
     // PARSER_VERSION = "0.2";
 }
@@ -16,21 +16,20 @@ init  :  stmt* ;
 
 stmt : segmentStmt
      | dataDecl
-     | arrayInit ;
+     | numberList ;
 
 segmentStmt : TEXTS
       | DATAS ;
 
-dataDecl : label TYPE arrayInit ;
+dataDecl : label TYPE numberList ;
 
 label : ALPHA ':' ;
    
 
-arrayInit : '{' value (',' value)* '}' ;  // must match at least one value
+numberList : value (',' value)* ;  // must match at least one value
 
 /** A value can be either a nested array/struct or a simple integer (INT) */
-value : arrayInit
-      | INT
+value : INT
       ;
 
 // parser rules start with lowercase letters, lexer rules with uppercase

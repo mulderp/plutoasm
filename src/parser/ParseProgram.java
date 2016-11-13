@@ -1,9 +1,12 @@
 package parser;
 
+import java.util.Vector;
+
 import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.tree.ParseTree;
+import org.antlr.v4.runtime.tree.ParseTreeWalker;
 
 import antlrparser.SimpleAsmLexer;
 import antlrparser.SimpleAsmParser;
@@ -50,8 +53,18 @@ public class ParseProgram {
 
         ParseTree tree = parser.init(); // begin parsing at init rule
         System.out.println(tree.toStringTree(parser)); // print LISP-style tree
+        
+        ParseTreeWalker walker = new ParseTreeWalker();
+        
+        Vector<String> memoryMap = new Vector<String>();
+        
+        walker.walk(new TranslateASMSource(memoryMap), tree);
 
-		setOutput(new StringBuffer("123"));
+        StringBuffer str = new StringBuffer();
+        for (int i = 0; i < memoryMap.size(); i++) {
+        	str.append(memoryMap.get(i));
+        }
+		setOutput(str);
 		
 	}
 
