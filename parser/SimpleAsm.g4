@@ -5,7 +5,7 @@ grammar SimpleAsm;
 
 
 @header {
-    package antlrparser;
+    // package antlrparser;
 
     // PARSER_VERSION = "0.2";
 }

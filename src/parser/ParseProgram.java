@@ -14,7 +14,7 @@ public class ParseProgram {
 	StringBuffer output;
 	
 	public ParseProgram(String input) {
-		this.input = input;
+		this.input = input ;
 		output = new StringBuffer();
 	}
 	
